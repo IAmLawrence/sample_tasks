@@ -1,59 +1,197 @@
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-    <!--
-    <record model="ir.ui.view" id="event_registration.list">
-      <field name="name">event_registration list</field>
-      <field name="model">event_registration.event_registration</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
-    -->
+    <data>
 
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="event_registration.action_window">
-      <field name="name">event_registration window</field>
-      <field name="res_model">event_registration.event_registration</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
+        <menuitem
+                id="event_registration_menu"
+                name="Event Registration"
+        />
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="event_registration.action_server">
-      <field name="name">event_registration server</field>
-      <field name="model_id" ref="model_event_registration_event_registration"/>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+        <record model="ir.ui.view" id="event_registration_registrants_tree">
+            <field name="name">event.registration.registrants.tree</field>
+            <field name="model">event.registration.registrants</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="reg_name"/>
+                    <field name="reg_email"/>
+                    <field name="reg_contact"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="event_registration_registrants_form">
+            <field name="name">event.registration.registrants.form</field>
+            <field name="model">event.registration.registrants</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="reg_name"/>
+                            <h1>
+                                <field name="reg_name"/>
+                            </h1>
+                        </div>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="event_registration" id="event_registration.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="event_registration.menu_1" parent="event_registration.menu_root"/>
-    <menuitem name="Menu 2" id="event_registration.menu_2" parent="event_registration.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="event_registration.menu_1_list" parent="event_registration.menu_1"
-              action="event_registration.action_window"/>
-    <menuitem name="Server to list" id="event_registration" parent="event_registration.menu_2"
-              action="event_registration.action_server"/>
-    -->
-  </data>
+                        <group>
+                            <group>
+                                <field name="reg_email"/>
+                                <field name="reg_contact"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--search-->
+        <record model="ir.ui.view" id="event_registration_registrants_search">
+            <field name="name">event.registration.registrants.search</field>
+            <field name="model">event.registration.registrants</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="reg_name"/>
+                </search>
+            </field>
+        </record>
+        <!--action-->
+        <record model="ir.actions.act_window" id="event_registration_registrants_action">
+            <field name="name">Registrants</field>
+            <field name="res_model">event.registration.registrants</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocomment_create">Registrants</p>
+            </field>
+        </record>
+
+        <menuitem
+                id="event_registration_menu_registrants"
+                name="Registrants"
+                action="event_registration_registrants_action"
+                parent="event_registration_menu"
+                sequence="5"
+            />
+
+        <record model="ir.ui.view" id="event_registration_lead_tree">
+            <field name="name">event.registration.lead.tree</field>
+            <field name="model">event.registration.lead</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="lead_name"/>
+                    <field name="lead_email"/>
+                    <field name="lead_contact"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="event_registration_lead_form">
+            <field name="name">event.registration.lead.form</field>
+            <field name="model">event.registration.lead</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="lead_name"/>
+                            <h1>
+                                <field name="lead_name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="lead_email"/>
+                                <field name="lead_contact"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--search-->
+        <record model="ir.ui.view" id="event_registration_lead_search">
+            <field name="name">event.registration.lead.search</field>
+            <field name="model">event.registration.lead</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="lead_name"/>
+                </search>
+            </field>
+        </record>
+        <!--action-->
+        <record model="ir.actions.act_window" id="event_registration_lead_action">
+            <field name="name">Lead</field>
+            <field name="res_model">event.registration.lead</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocomment_create">Lead</p>
+            </field>
+        </record>
+
+        <menuitem
+            id="event_registration_menu_lead"
+            name="Lead"
+            action="event_registration_lead_action"
+            parent="event_registration_menu"
+            sequence="10"
+            />
+
+        <record model="ir.ui.view" id="event_registration_contacts_tree">
+            <field name="name">event.registration.contacts.tree</field>
+            <field name="model">event.registration.contacts</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="contacts_name"/>
+                    <field name="contacts_email"/>
+                    <field name="contacts_contact"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="event_registration_contacts_form">
+            <field name="name">event.registration.contacts.form</field>
+            <field name="model">event.registration.contacts</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="contacts_name"/>
+                            <h1>
+                                <field name="contacts_name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="contacts_email"/>
+                            <field name="contacts_contact"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--search-->
+        <record model="ir.ui.view" id="event_registration_contacts_search">
+            <field name="name">event.registration.contacts.search</field>
+            <field name="model">event.registration.contacts</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="contacts_name"/>
+                </search>
+            </field>
+        </record>
+        <!--action-->
+        <record model="ir.actions.act_window" id="event_registration_contacts_action">
+            <field name="name">Contacts</field>
+            <field name="res_model">event.registration.contacts</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,search</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocomment_create">Contacts</p>
+            </field>
+        </record>
+
+        <menuitem
+                id="event_registration_menu_contacts"
+                name="Contacts"
+                action="event_registration_contacts_action"
+                parent="event_registration_menu"
+                sequence="15"
+            />
+
+    </data>
 </odoo>

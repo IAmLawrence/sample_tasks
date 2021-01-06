@@ -2,14 +2,29 @@
 
 from odoo import models, fields, api
 
-# class event_registration(models.Model):
-#     _name = 'event_registration.event_registration'
 
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+class EventRegistrationRegistrants(models.Model):
+    _name = 'event.registration.registrants'
+    _rec_name = 'reg_name'
+
+    reg_name = fields.Char(string="Name")
+    reg_email = fields.Char(string="Email")
+    reg_contact = fields.Char(string="Contact", size=10)
+
+
+class EventRegistrationLead(models.Model):
+    _name = 'event.registration.lead'
+    _rec_name = 'lead_name'
+
+    lead_name = fields.Char(string="Name")
+    lead_email = fields.Char(string="Email")
+    lead_contact = fields.Char(string="Contact", size=10)
+
+
+class EventRegistrationContacts(models.Model):
+    _name = 'event.registration.contacts'
+    _rec_name = 'contacts_name'
+
+    contacts_name = fields.Char(string="Name")
+    contacts_email = fields.Char(string="Email")
+    contacts_contact = fields.Char(string="Contact", size=10)

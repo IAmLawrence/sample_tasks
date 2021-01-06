@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+
+        <record id="action_generate_event_registration" model="ir.actions.server">
+            <field name="name">Generate</field>
+            <field name="model_id" ref="model_event_registration_registrants"/>
+            <field name="condition">True</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="code">record.generate_registrants()</field>
+            <field name="sequence">5</field>
+        </record>
+    </data>
+</odoo>

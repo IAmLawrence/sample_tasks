@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="event_registration_wizard_form">
+            <field name="name">event.registration.wizard.form</field>
+            <field name="model">event.registration.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <footer>
+                        <group>
+                            <h1>Generate all registrants?</h1>
+                        </group>
+                        <button name="generate_registrants" type="object" string="Generate" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_event_registration_wizard" model="ir.actions.act_window">
+            <field name="name">Generate</field>
+            <field name="res_model">event.registration.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="event_registration_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem
+                name="Generate"
+                id="event_registration_generate"
+                action="action_event_registration_wizard"
+                parent="event_registration.event_registration_menu"
+                sequence="20"
+        />
+
+    </data>
+</odoo>
